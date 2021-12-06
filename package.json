@@ -4,7 +4,7 @@
   "description": "Advent of Code solutions of GiyoMoon",
   "scripts": {
     "start": "tsc -p . && cd ./dist && node ./app.js",
-    "dev": "nodemon ./app.ts"
+    "dev": "nodemon ./app.ts 1"
   },
   "author": "GiyoMoon",
   "license": "Unlicense",
