@@ -1,0 +1,14 @@
+{
+  "name": "aoc2021",
+  "version": "1.0.0",
+  "description": "Advent of Code solutions of GiyoMoon",
+  "scripts": {
+    "start": "tsc -p . && cd ./dist && node ./app.js"
+  },
+  "author": "GiyoMoon",
+  "license": "Unlicense",
+  "devDependencies": {
+    "@types/node": "^16.11.11",
+    "typescript": "^4.5.2"
+  }
+}
