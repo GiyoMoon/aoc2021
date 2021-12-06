@@ -1,5 +1,9 @@
 import { Solver } from './solver';
 
-const solver = new Solver;
+const solver = new Solver();
 
-solver.run(new Date().getDate());
+const currentDay = new Date().getDate();
+
+for (let day = 1; day <= currentDay; day++) {
+  solver.run(day);
+}

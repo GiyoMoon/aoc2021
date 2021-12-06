@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "Advent of Code solutions of GiyoMoon",
   "scripts": {
-    "start": "tsc -p . && cd ./dist && node ./app.js"
+    "start": "tsc -p . && cd ./dist && node ./app.js",
+    "dev": "nodemon ./app.ts"
   },
   "author": "GiyoMoon",
   "license": "Unlicense",
   "devDependencies": {
     "@types/node": "^16.11.11",
+    "nodemon": "^2.0.15",
     "typescript": "^4.5.2"
   }
 }
