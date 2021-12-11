@@ -1,4 +1,5 @@
 import fs from 'fs';
+import chalk from 'chalk';
 
 export class Solver {
   public run(day: string) {
@@ -22,9 +23,17 @@ export class Solver {
         }
       }
 
+      const start = process.hrtime();
       const results = daySolverInstance.solve(inputData);
-      console.log(`====Day ${day}====`);
-      console.log(results);
+      const end = process.hrtime(start);
+
+      console.log(`=====${chalk.greenBright(`Day ${day}`)}======`);
+      console.log(`| Part ${chalk.yellow('1')}: ${chalk.hex('#808eff')(results.part1)}`);
+      console.log(`| Part ${chalk.yellow('2')}: ${chalk.hex('#808eff')(results.part2)}`);
+
+      const took = (end[0] * 1000000000 + end[1]) / 1000000;
+      console.log(`| Took ${chalk.cyan(took.toFixed(4))} ms`);
+      return took;
     } else {
       console.error(`There is no solution for day ${day}`);
     }

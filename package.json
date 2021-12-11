@@ -8,6 +8,9 @@
   },
   "author": "GiyoMoon",
   "license": "Unlicense",
+  "dependencies": {
+    "chalk": "^4.1.2"
+  },
   "devDependencies": {
     "@types/node": "^16.11.11",
     "nodemon": "^2.0.15",
