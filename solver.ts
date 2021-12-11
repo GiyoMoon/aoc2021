@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 export class Solver {
-  public run(day: number) {
+  public run(day: string) {
     const solutions = fs.readdirSync(`./solutions`).filter(file => file.endsWith('.ts') || file.endsWith('.js'));
 
     if (solutions.some(solution => solution === `day${day}.ts` || solution === `day${day}.js`)) {
