@@ -2,9 +2,9 @@ export default class Day13 {
 
   public solve(input: string): { part1: any, part2: any; } {
     const coords = input.split('\n\n')[0].split('\n').map(coords => coords.split(',').map(c => parseInt(c)));
-    const folds = input.split('\n\n')[1].split('\n').map(folds => [folds.split(' ')[2].split('=')[0], parseInt(folds.split(' ')[2].split('=')[1])]);
+    const folds = input.split('\n\n')[1].split('\n').map(folds => [folds.split(' ')[2].split('=')[0], parseInt(folds.split(' ')[2].split('=')[1])]) as [string, number][];
 
-    let paper = this._preparePaper(coords);
+    let paper = this._preparePaper(coords, folds.find(f => f[0] === 'y'));
 
     paper = this._fold(paper, [folds.shift()]);
 
@@ -15,12 +15,12 @@ export default class Day13 {
     return { part1: dotCountPart1, part2: '\n' + this._formatPaper(paper) };
   }
 
-  private _fold(paper: boolean[][], folds: (string | number)[][]) {
+  private _fold(paper: boolean[][], folds: [string, number][]) {
     for (const fold of folds) {
       if (fold[0] === 'y') {
-        paper = this._foldY(paper, fold[1] as number);
+        paper = this._foldY(paper, fold[1]);
       } else if (fold[0] === 'x') {
-        paper = this._foldX(paper, fold[1] as number);
+        paper = this._foldX(paper, fold[1]);
       }
     }
     return paper;
@@ -29,9 +29,7 @@ export default class Day13 {
   private _foldY(paper: boolean[][], foldIndex: number) {
     let firstHalf = paper.slice(0, foldIndex);
     let secondHalf = paper.slice(foldIndex + 1).reverse();
-    if (firstHalf.length > secondHalf.length) {
-      secondHalf = [new Array(paper[0].length).fill(false), ...secondHalf];
-    }
+
     return this._combineArrays(firstHalf, secondHalf);
   }
 
@@ -62,7 +60,7 @@ export default class Day13 {
     return result;
   }
 
-  private _preparePaper(coords: number[][]): boolean[][] {
+  private _preparePaper(coords: number[][], firstYFold: [string, number]): boolean[][] {
     let maxY = 0;
     let maxX = 0;
 
@@ -83,6 +81,14 @@ export default class Day13 {
     for (const coord of coords) {
       paper[coord[1]][coord[0]] = true;
     }
+
+    if (paper.length <= (firstYFold[1]) * 2) {
+      const toAdd = firstYFold[1] * 2 - paper.length + 1;
+      for (let i = 0; i < toAdd; i++) {
+        paper.push(new Array(maxX + 1).fill(false));
+      }
+    }
+
     return paper;
   }
 
